@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Validation Form</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <script>
+          //  check user is logged in
+    let userId =localStorage.getItem("id");
+    if(userId) window.location.href ="/";
+  </script>
+</head>
+<body class="hold-transition login-page dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <!-- <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a> -->
+        <a href="../../index2.html" class="h1">
+          <img src="/dist/img/main-log.png" class="bg-light" style="border-radius:50%;" width="100" height="100">
+        </a>
+      </div>
+      <hr class="bg-light">
+      <div class="card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <div class="alert alert-warning hide-element " role="alert" id="server-error-box">
+          <b id="server-error"></b>
+        </div>
+        <form id="login-form"  action="#">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+
+          </div>
+            <button type="submit" id="btn-login" class="btn btn-primary">
+              <span>Submit</span>
+            </button>
+            <div id="spinner-login" class="btn btn-primary hide-element"  >
+              <div  class="spinner-border spinner-border-sm text-light  ml-3 mr-3" role="status"></div>
+            </div>
+        </form>
+  
+        
+        <br>
+        <br>
+        <p class="mb-1">
+          <a href="/forgot-password">I forgot my password</a>
+        </p>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+
+<script src="/js/config.js"></script>
+<script src="/js/login.js"></script>
+
+</body>
+</html>
+
+
+
