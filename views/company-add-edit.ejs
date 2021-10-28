@@ -14,14 +14,15 @@
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../css/main.css">
+
+ 
+ 
   <script>
     //  check user is logged in
     let userId =localStorage.getItem("id");
     if(!userId) window.location.href ="/login";
+    var key = "<%- key %>"; ///get key to switch edit or delete 
   </script>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -140,7 +141,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/add-products" class="nav-link">
+                <a href="pages/layout/boxed.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>add new product</p>
                 </a>
@@ -268,12 +269,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Products</h1>
+              <h1><%= name %></h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Products</li>
+                <li class="breadcrumb-item active"><%= name%></li>
               </ol>
             </div>
           </div>
@@ -287,15 +288,54 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Products added</h3>
+                  <h3 class="card-title"><%= functionality %></h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-hover" >
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
+                
+                  <div class="card-body">
+                    <form id="add-company-form" action="#">
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input type="text" name="name" class="form-control" id="name" placeholder="Enter company name">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Email</label>
+                          <input type="email" name="email" class="form-control" id="email" placeholder="Enter email address">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Phone</label>
+                          <input type="number" name="phone" class="form-control" id="phone" placeholder="Enter phone number">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Credit Limit</label>
+                          <input type="number" name="creditLimit" class="form-control" id="creditLimit" placeholder="Enter credit limit">
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Address</label>
+                          <input type="text" name="address" class="form-control" id="address" placeholder="Enter adders">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                    <div class="btn btn-primary hide-element" id="submit-spinner" >
+                      <div class="spinner-border spinner-border-sm text-light ml-3 mr-3" 
+                           role="status"></div>
+                    </div>
+                  </form>
+                  </div>
+                
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
@@ -327,50 +367,31 @@
     </div>
   </footer>
 </div>
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/jszip/jszip.min.js"></script>
-<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="../../dist/js/demo.js"></script>
+<!-- Select2 -->
+
+
 
 
 <script src="/js/index.js"></script>
 <script src="/js/config.js"></script>
 <script src="/js/get-acesstoken.js"></script>
+<script src="/js/add-edit-company.js"></script>
 
-<script src="/js/products.js"></script>
 </body>
 </html>
 

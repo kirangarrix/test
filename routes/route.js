@@ -14,18 +14,22 @@ router.get('/login', function(req, res, next) {
 });
 
 //products route
-router.get('/products', function(req, res, next) {
+router.get('/products', function(req, res) {
   res.render('product',{});
 });
 
 //product add
-router.get('/add-product', function(req, res, next) {
+router.get('/add-product', function(req, res) {
   res.render('product-add-edit',{name:"Product",functionality:"Add product",key:"add-product"});
 });
 
-router.get('/edit-product', function(req, res, next) {
+router.get('/edit-product', function(req, res) {
   res.render('product-add-edit',{name:"Product",functionality:"Edit product",key:"edit-product"});
 });
+
+router.get("/add-company",function(req,res){
+   res.render('company-add-edit',{name:"Company",functionality:"Add company",key:"add-company"});
+})
 
 
 module.exports = router;

@@ -6,12 +6,11 @@ $(function () {
             //get product list
             $.ajax({
                 type: "GET",
-                url: backendUrl+"/product",
+                url:backendUrl+"/companies",
                 headers:{Authorization:"Bearer "+result},
                 success: function (response) {
                 
                  let products = response.data.products;
-
                  $("#example1").DataTable({
                     "data":products,
                     "columns":[
@@ -34,14 +33,15 @@ $(function () {
                                           data-target="#myModal"
                                           onclick="navigateEditProduct('${full._id}','${full.name}','${full.measuredUnit}',
                                             '${full.openingQuantity}','${full.availableQuantity}',
-                                             '${full.description+""}',${full.pricePerUnit})">Edit</button>`;
-                         },data:null,title:"Edit"},
+                                            '${full.pricePerUnit}','${full.description}')">Edit</button> 
+                                    `;
+                         },data:"description",title:"Edit"},
                         {render: function(data, type, full, meta){
                             
                           
                             return `<button class="btn btn-block btn-danger btn-flat" 
                                             onclick="deleteProduct('${full._id}')">Delete</button>`;
-                         },data:null,title:"Delete"},
+                         },data:"description",title:"Delete"},
                     ],
                     "responsive": true,
                      "lengthChange": false, 
@@ -77,7 +77,7 @@ function deleteProduct(_productId){
         //get product list
          $.ajax({
             type: "DELETE",
-            url:backendUrl+"/product/"+productId,
+            url: "/api/product/"+productId,
             headers:{Authorization:"Bearer "+result},
             success: function (response) {
             
@@ -97,16 +97,9 @@ function deleteProduct(_productId){
     }
 }
 
-function navigateEditProduct(_productId,_productName,_measuredUnit,_openingQuantity,_availableQuantity,_description,_pricePerUnit){
+function navigateEditProduct(_productId,_productName,_measuredUnit,_openingQuantity,_availableQuantity,_description){
 
-  localStorage.setItem("productId",_productId);
-  localStorage.setItem("productName",_productName);
-  localStorage.setItem("measuredUnit",_measuredUnit);
-  localStorage.setItem("openingQuantity",_openingQuantity);
-  localStorage.setItem("pricePerUnit",_pricePerUnit);
-  localStorage.setItem("description",_description);
-   
-  window.location.href ="/edit-product";
-              
+    console.log(_productId,_productName,_measuredUnit,_openingQuantity,_availableQuantity,_description)
+         
 }
 

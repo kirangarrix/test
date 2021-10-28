@@ -1,5 +1,5 @@
 $(function () {
-  if(key == "edit-product"){
+  if(key == "edit-company"){
    var productId = localStorage.getItem("productId");
    var productName = localStorage.getItem("productName");
    var measuredUnit = localStorage.getItem("measuredUnit");
@@ -9,7 +9,7 @@ $(function () {
    var pricePerUnit = localStorage.getItem("pricePerUnit");
 
    
-    $("#name").val(productName);
+    $("#name").val(name);
     $("#measuredUnit").val();
     $(`#measuredUnit option[value="${measuredUnit}"]`).attr("selected",true);
     $("#pricePerUnit").val(pricePerUnit);
@@ -17,47 +17,66 @@ $(function () {
     $("#productDescription").val(description);
   }
    
-  
   $.validator.setDefaults({
-    submitHandler: function () {
+    submitHandler: function (form,e) {
       e.preventDefault(e);
       
-      var name = $("#name").val();
-      var measuredUnit = $("#measuredUnit").val();
-      var pricePerUnit = $("#pricePerUnit").val();
-      var openingQuantity = $("#openingQuantity").val();
-      var productDescription = $("#productDescription").val();
-
-      submitForm(name,measuredUnit,pricePerUnit,openingQuantity,productDescription);
+       var name = $("#name").val();
+      var email = $("#email").val();
+      var phone = $("#phone").val();
+      var creditLimit = $("#creditLimit").val();
+      var address = $("#address").val();
+      submitForm(name,email,phone,creditLimit,address);
 
     }
   });
+  
 
+  
+  jQuery.validator.addMethod("phoneIND", function (phone_number, element) {
+    phone_number = phone_number.replace(/\s+/g, "");
+    return this.optional(element) || phone_number.length === 10 
+   }, "Invalid phone number");
 
-  $('#add-product-form').validate({
+  $('#add-company-form').validate({
     rules: {
       name: {
         required: true,
       },
-      pricePerUnit: {
+      email: {
+        email:true,
         required: true,
       },
-      openingQuantity: {
+       phone: {
         required: true,
+        phoneIND:true
       },
-      openingQuantity: {
+      creditLimit: {
+        required: true,
+        maxlength:6
+      },
+      address: {
         required: true,
       },
     },
     messages: {
       name: {
-        required: "Please provide a product name",
+        required: "Please provide a  name"
       },
-      pricePerUnit: {
-        required: "Please provide price per unit",
+      email: {
+        required: "Please provide an email id ",
+        email:"Not a valid email id "
       },
-      openingQuantity: {
-        required: "Please provide quantity",
+      phone: {
+        required: "Please provide phone number",
+        phoneIND:"Not a valid phone number",
+      },
+      creditLimit: {
+        required:"Please provide a credit limit",
+        maxlength:"Limit exceeded"
+      },
+      address: {
+        required: "Please provide address",
       },
     },
     errorElement: 'span',
@@ -73,8 +92,8 @@ $(function () {
     }
   });
   
- function submitForm(_name,_measuredUnit,_pricePerUnit,_openingQuantity,_productDescription){
-        
+ function submitForm(_name,_email,_phone,_creditLimit,_address){
+
         $("#submit-btn").css("display","none");
         $("#submit-spinner").css("display","inline");
          // call api
@@ -82,29 +101,29 @@ $(function () {
        getAccessToken()
            .then(result =>{
              //get product list
-             if (key == "add-product"){
+             if (key == "add-company"){
                 $.ajax({
                     type: "POST",
-                    url:backendUrl+"/product",
+                    url:backendUrl+"/company",
                     data:{
-                        name:_name,
-                        measuredUnit:_measuredUnit,
-                        pricePerUnit:_pricePerUnit,
-                        openingQuantity:_openingQuantity,
-                        description:_productDescription},
+                      name:_name,
+                      email:_email,
+                      phone:_phone,
+                      address:_address,
+                      creditLimit:_creditLimit},
                     headers:{Authorization:"Bearer "+result},
                     success: function (response) {
                         $("#submit-btn").css("display","inline");
                         $("#submit-spinner").css("display","none");
-                        alert("new product added");
-                    
-                    
+                        alert("new company added");
+                        $('#add-company-form').trigger("reset");
                     },
                     error:function (error){
                         let response = error.responseJSON;
                         $("#submit-btn").css("display","inline");
                         $("#submit-spinner").css("display","none");   
                         alert(response.message);
+                        
                     },
                 });
 
@@ -148,3 +167,4 @@ $(function () {
   }
   
 });
+
