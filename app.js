@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan")
 
-const port = process.env.PORT || "5050";
+const port = process.env.PORT || 5050;
 var app = express();
 
 // view engine setup
