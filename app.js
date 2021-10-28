@@ -1,41 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const morgan = require("morgan")
 
-var Router = require('./routes/route');
-
-
+const port = process.env.PORT;
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/',Router);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(morgan("tiny")); //logs request-endpoint and time taken
+app.use(express.static(path.join(__dirname, "public")));
+
+
+//view routers
+app.use("/", require("./routes/route"));
+
+
+
+//no router found will trigger this by default
+app.all("*", (req, res) => {
+  res.render("error");
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+app.listen(port, () => console.log(`\napplication is running at ${port}`));
