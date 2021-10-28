@@ -1,7 +1,7 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
-const path = require("path");
-const morgan = require("morgan")
+// const path = require("path");
+// const morgan = require("morgan")
 
 const port = process.env.PORT || 5050;
 var app = express();
@@ -31,7 +31,7 @@ var app = express();
 
 app.get("/",function(req,res){
      console.log("calling index");
-     res.send("on index page")
-})
+     res.send("on index page");
+});
 app.listen(port, () => console.log(`\napplication is running at ${port}`));
 // app.listen(() => console.log(`\napplication is running at ${port}`));
