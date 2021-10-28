@@ -25,4 +25,5 @@ app.all("*", (req, res) => {
   res.render("error");
 });
 
-app.listen(port, () => console.log(`\napplication is running at ${port}`));
+//app.listen(port, () => console.log(`\napplication is running at ${port}`));
+app.listen(() => console.log(`\napplication is running at ${port}`));
