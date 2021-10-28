@@ -58,7 +58,7 @@ $(function(){
       $("#spinner-login").css("display","inline-block");
       $.ajax({
               type: "POST",
-              url:"http://localhost:5000/api/user/login",
+              url:backendUrl+"/user/login",
               data:{email:_email,password:_password},
               success: function (response) {
                 $("#btn-login").css("display","inline-block");
