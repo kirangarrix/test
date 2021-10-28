@@ -16,7 +16,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 //view routers
-app.use("/", require("./routes/route"));
+// app.use("/", require("./routes/route"));
+
+app.get("/",function(req,res){
+  res.send("ima ahere ")
+})
 
 
 
