@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan")
 
-const port = process.env.PORT;
+const port = process.env.PORT || "5050";
 var app = express();
 
 // view engine setup
@@ -29,5 +29,5 @@ app.all("*", (req, res) => {
   res.render("error");
 });
 
-//app.listen(port, () => console.log(`\napplication is running at ${port}`));
-app.listen(() => console.log(`\napplication is running at ${port}`));
+app.listen(port, () => console.log(`\napplication is running at ${port}`));
+// app.listen(() => console.log(`\napplication is running at ${port}`));
