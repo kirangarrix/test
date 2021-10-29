@@ -23,13 +23,52 @@ router.get('/add-product', function(req, res) {
   res.render('product-add-edit',{name:"Product",functionality:"Add product",key:"add-product"});
 });
 
+//edit product
 router.get('/edit-product', function(req, res) {
   res.render('product-add-edit',{name:"Product",functionality:"Edit product",key:"edit-product"});
 });
 
+//company
+router.get('/companies', function(req, res) {
+  res.render('companies',{});
+});
+//add company
 router.get("/add-company",function(req,res){
    res.render('company-add-edit',{name:"Company",functionality:"Add company",key:"add-company"});
 })
+
+//services
+router.get('/services', function(req, res) {
+  res.render('services',{});
+});
+
+//add service
+router.get("/add-service",function(req,res){
+  res.render('service-add-edit',{name:"Service",functionality:"Add Service",key:"add-service"});
+})
+
+
+//stocks
+router.get('/stocks', function(req, res) {
+  res.render('stocks',{});
+});
+
+//add stock
+router.get("/add-stock",function(req,res){
+  res.render('stock-add-edit',{name:"Stock",functionality:"Add Stock",key:"add-stock"});
+})
+
+//advisors
+router.get('/advisors', function(req, res) {
+  res.render('advisors',{});
+});
+
+//add advisors
+router.get("/add-advisors",function(req,res){
+  res.render('advisor-add-edit',{name:"Advisor",functionality:"Add Advisor",key:"add-advisor"});
+})
+
+
 
 
 module.exports = router;
