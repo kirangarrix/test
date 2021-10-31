@@ -19,14 +19,16 @@ $(function () {
    
   
   $.validator.setDefaults({
-    submitHandler: function () {
-      e.preventDefault(e);
+    submitHandler: function (e) {
+    
       
       var name = $("#name").val();
       var measuredUnit = $("#measuredUnit").val();
       var pricePerUnit = $("#pricePerUnit").val();
       var openingQuantity = $("#openingQuantity").val();
       var productDescription = $("#productDescription").val();
+  
+      
 
       submitForm(name,measuredUnit,pricePerUnit,openingQuantity,productDescription);
 
@@ -39,13 +41,16 @@ $(function () {
       name: {
         required: true,
       },
+      measuredUnit: {
+        required: true,
+      },
       pricePerUnit: {
         required: true,
       },
       openingQuantity: {
         required: true,
       },
-      openingQuantity: {
+      productDescription: {
         required: true,
       },
     },
@@ -53,12 +58,18 @@ $(function () {
       name: {
         required: "Please provide a product name",
       },
+      measuredUnit:{
+        required: "Please select measured unit"
+      },
       pricePerUnit: {
         required: "Please provide price per unit",
       },
       openingQuantity: {
         required: "Please provide quantity",
       },
+      productDescription:{
+        required:"Please provide description"
+      }
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -78,7 +89,7 @@ $(function () {
         $("#submit-btn").css("display","none");
         $("#submit-spinner").css("display","inline");
          // call api
-
+      
        getAccessToken()
            .then(result =>{
              //get product list

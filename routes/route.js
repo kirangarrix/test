@@ -45,7 +45,12 @@ router.get('/services', function(req, res) {
 //add service
 router.get("/add-service",function(req,res){
   res.render('service-add-edit',{name:"Service",functionality:"Add Service",key:"add-service"});
-})
+});
+
+// edit service
+router.get("/edit-service",function(req,res){
+  res.render('service-add-edit',{name:"Service",functionality:"Edit Service",key:"edit-service"});
+});
 
 
 //stocks

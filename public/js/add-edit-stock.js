@@ -1,97 +1,63 @@
-$(function () {
-  if(key == "edit-service"){
+$(function(){
+
+  if(key == "edit-stock"){
     var productId = localStorage.getItem("productId");
     var productName = localStorage.getItem("productName");
-    var productPrice=localStorage.getItem("productPrice")
-    var productUsed = localStorage.getItem("productUsed");
-   
+    var measuredUnit = localStorage.getItem("measuredUnit");
+    var openingQuantity = localStorage.getItem("openingQuantity");
+    var availableQuantity = localStorage.getItem("availableQuantity");
+    var description = localStorage.getItem("description");
+    var pricePerUnit = localStorage.getItem("pricePerUnit");
+ 
     
      $("#name").val(productName);
-     $("#pricePerUnit").val(productPrice);
-     $("#Products").val(productUsed);
+     $("#measuredUnit").val();
+     $(`#measuredUnit option[value="${measuredUnit}"]`).attr("selected",true);
+     $("#pricePerUnit").val(pricePerUnit);
+     $("#openingQuantity").val(openingQuantity);
+     $("#productDescription").val(description);
    }
-
-  //product selector on button click
-  $("#add-product").click(function (e) { 
-      e.preventDefault();
-
-     var  element =`<div class="row">
-                <div class="col-8">
-                    <div class="form-group">
-                    <label for="exampleInputPassword1">Product</label>
-                    <select class="form-control products" style="width: 100%;" name="products"  id="#Products">
-                    <option value="" selected disabled>Choose</option>   
-                    </select>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Quantity</label>
-                    <input type="number" name="quantity" class="form-control quantity"  id="quantity" placeholder="Enter Quantity">
-                    </div>
-                </div>
-             </div>`
-      $("#extra-products").append(element);
-  });
-
-  $("#add-service-form").submit(function(e) {
+   
+  $("#add-stock-form").submit(function(e) {
     e.preventDefault();
 })
 
   $.validator.setDefaults({
     submitHandler: function (e) {
-      var name = $("#name").val();
-      var pricePerUnit = $("#pricePerUnit").val();
-      var Product = $("#Products").val();
-      var openingQuantity = $("#openingQuantity").val();
-      var Products=$(".products").val();
-      var Quantity=$(".quantity").val();
+      var Products = $("#Products").val();
+      var StockStatus = $("#stockStatus").val();
+      var Quantity = $("#Quantity").val();
+      var startDate=$('#startdate').val();
+      var endDate=$('#enddate').val();
+      
 
-      submitForm(name,pricePerUnit,Product,openingQuantity);
+      submitForm(Products,StockStatus,Quantity,startDate,endDate);
      
     }
   });
 
-  $('#add-service-form').validate({
+  $('#add-stock-form').validate({
     rules: {
-      name: {
-        required: true,
-      },
-      pricePerUnit: {
-        required: true,
-      },
       Products: {
         required: true,
       },
-      openingQuantity: {
+      stockStatus: {
         required: true,
       },
-      products: {
+      Quantity: {
         required: true,
-      },
-      quantity: {
-          required:true,
       }
     },
     messages: {
-      name: {
-        required: "Please provide a product name",
-      },
-      pricePerUnit: {
-        required: "Please provide price per unit",
-      },
       Products: {
         required: "Please select product",
       },
-      openingQuantity:{
+      stockStatus:{
+        required: "Please select product",
+      },
+      Quantity:{
         required:"Please provide quantity"
       },
-      products:{
-        required:"Please select product"
-      },
-      quantity:{
-          required:"Please select quantity"
-      }
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -106,7 +72,7 @@ $(function () {
     }
   });
 
-  function submitForm(_name,_pricePerUnit,_product,_openingQuantity){
+  function submitForm(_Products,_StockStatus,_Quantity,_startDate,_endDate){
         
     $("#submit-btn").css("display","none");
     $("#submit-spinner").css("display","inline");
@@ -115,15 +81,16 @@ $(function () {
    getAccessToken()
        .then(result =>{
          //get product list
-         if (key == "add-service"){
+         if (key == "add-stock"){
             $.ajax({
                 type: "POST",
-                url:backendUrl+"/service",
+                url:backendUrl+"/inventory",
                 data:{
-                    name:_name,
-                    pricePerUnit:_pricePerUnit,
-                    product:_product,
-                    openingQuantity:_openingQuantity},
+                    product:_Products,
+                    stockStatus:_StockStatus,
+                    quantity:_Quantity,
+                    startDate:_startDate,
+                    endDate:_endDate},
                 headers:{Authorization:"Bearer "+result},
                 success: function (response) {
                   console.log(response);
@@ -143,22 +110,23 @@ $(function () {
 
           }
 
-          if(key == "edit-service"){
+          if(key == "edit-stock"){
             //console.log(productId,productName,measuredUnit,openingQuantity,availableQuantity,description,pricePerUnit)
             $.ajax({
                 type: "PUT",
-                url:backendUrl+"/service",
+                url:backendUrl+`/inventory/?startDate=${_startDate}&endDate=${endDate}`,
                 data:{
-                    name:_name,
-                    pricePerUnit:_pricePerUnit,
-                    product:_product,
-                    openingQuantity:_openingQuantity},
+                  product:_Products,
+                    stockStatus:_StockStatus,
+                    quantity:_Quantity,
+                    startDate:_startDate,
+                    endDate:_endDate},
                 headers:{Authorization:"Bearer "+result},
                 success: function (response) {
                     $("#submit-btn").css("display","inline");
                     $("#submit-spinner").css("display","none");
                     alert("product edited");
-                    window.location.href ="/services"
+                    window.location.href ="/products"
                 
                 },
                 error:function (error){
@@ -178,6 +146,5 @@ $(function () {
 
     
 }
-  
-    
-});
+
+})

@@ -292,7 +292,7 @@
                 <!-- /.card-header -->
                 
                   <div class="card-body">
-                    <form id="add-product-form">
+                    <form id="add-service-form">
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
@@ -311,9 +311,8 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="exampleInputPassword1">Product</label>
-                          <select class="form-control" style="width: 100%;" id="measuredUnit">
-                            <option value="">Product 1</option>
-                            <option value="">Product 2</option>
+                          <select class="form-control select2"  id="Products" name="Products" style="width: 100%;">
+                            <option value="" selected disabled>Choose</option>                     
                           </select>
                         </div>
                       </div>
@@ -394,6 +393,7 @@
 <script src="/js/index.js"></script>
 <script src="/js/config.js"></script>
 <script src="/js/get-acesstoken.js"></script>
+<script src="/js/product_id.js"></script>
 <script src="/js/add-edit-service.js"></script>
 
 </body>
