@@ -46,6 +46,12 @@ $(function(){
       },
       Quantity: {
         required: true,
+      },
+      startdate: {
+        required: true,
+      },
+      enddate: {
+        required: true,
       }
     },
     messages: {
@@ -58,6 +64,12 @@ $(function(){
       Quantity:{
         required:"Please provide quantity"
       },
+      startdate:{
+        required:"Please select date"
+      },
+      enddate:{
+        required:"Please select date"
+      }
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {

@@ -9,7 +9,7 @@ $(function(){
           var Name = $("#name").val();
           var Email = $("#email").val();
           var Phone = $("#phone").val();
-          var Date=$("#reservationdate").val();
+          var Date=$("#date").val();
     
           submitForm(Name,Email,Phone,Date);
          
@@ -26,6 +26,9 @@ $(function(){
           },
           phone: {
             required: true,
+          },
+          date:{
+            required:true,
           }
         },
         messages: {
@@ -38,6 +41,9 @@ $(function(){
           Quantity:{
             required:"Please provide quantity"
           },
+          date:{
+            required:"Please select date"
+          }
         },
         errorElement: 'span',
         errorPlacement: function (error, element) {

@@ -37,6 +37,11 @@ router.get("/add-company",function(req,res){
    res.render('company-add-edit',{name:"Company",functionality:"Add company",key:"add-company"});
 })
 
+// edit compnay
+router.get("/edit-company",function(req,res){
+   res.render('company-add-edit',{name:"Company",functionality:"Add company",key:"edit-company"});
+})
+
 //services
 router.get('/services', function(req, res) {
   res.render('services',{});

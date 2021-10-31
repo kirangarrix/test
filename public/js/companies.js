@@ -26,7 +26,7 @@ $(function () {
                                           class="btn btn-block btn-warning btn-flat"
                                           data-toggle="modal" 
                                           data-target="#myModal"
-                                          onclick="navigateEditService('${full._id}','${full.name}','${full.productsUsed}')">Edit</button>`;
+                                          onclick="navigateEditCompany('${full._id}','${full.name}','${full.emailAddress}','${full.phone}','${full.creditLimit}','${full.address}')">Edit</button>`;
                          },data:null,title:"Edit"},
                         {render: function(data, type, full, meta){
                             
@@ -89,16 +89,16 @@ function deleteProduct(_productId){
     }
 }
 
-function navigateEditProduct(_productId,_productName,_measuredUnit,_openingQuantity,_availableQuantity,_description,_pricePerUnit){
+function navigateEditCompany(_companyId,_companyName,_emailAddress,_phone,_creditLimit,_address){
 
-  localStorage.setItem("productId",_productId);
-  localStorage.setItem("productName",_productName);
-  localStorage.setItem("measuredUnit",_measuredUnit);
-  localStorage.setItem("openingQuantity",_openingQuantity);
-  localStorage.setItem("pricePerUnit",_pricePerUnit);
-  localStorage.setItem("description",_description);
+  localStorage.setItem("companyId",_companyId);
+  localStorage.setItem("companyName",_companyName);
+  localStorage.setItem("emailAddress",_emailAddress);
+  localStorage.setItem("phone",_phone);
+  localStorage.setItem("creditLimit",_creditLimit);
+  localStorage.setItem("address",_address);
    
-  window.location.href ="/edit-product";
+  window.location.href ="/edit-company";
               
 }
 

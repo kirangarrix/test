@@ -1,21 +1,20 @@
 $(function () {
   if(key == "edit-company"){
-   var productId = localStorage.getItem("productId");
-   var productName = localStorage.getItem("productName");
-   var measuredUnit = localStorage.getItem("measuredUnit");
-   var openingQuantity = localStorage.getItem("openingQuantity");
-   var availableQuantity = localStorage.getItem("availableQuantity");
-   var description = localStorage.getItem("description");
-   var pricePerUnit = localStorage.getItem("pricePerUnit");
-
-   
-    $("#name").val(name);
-    $("#measuredUnit").val();
-    $(`#measuredUnit option[value="${measuredUnit}"]`).attr("selected",true);
-    $("#pricePerUnit").val(pricePerUnit);
-    $("#openingQuantity").val(openingQuantity);
-    $("#productDescription").val(description);
-  }
+    var companyId = localStorage.getItem("copmanyId");
+    var companyName = localStorage.getItem("companyName");
+    var emailAddress = localStorage.getItem("emailAddress");
+    var phone = localStorage.getItem("phone");
+    var creditLimit = localStorage.getItem("creditLimit");
+    var address = localStorage.getItem("address");
+ 
+ 
+    
+     $("#name").val(companyName);
+     $("#email").val(emailAddress);
+     $("#phone").val(phone);
+     $("#creditLimit").val(creditLimit);
+     $("#address").val(address);
+   }
    
   $.validator.setDefaults({
     submitHandler: function (form,e) {
