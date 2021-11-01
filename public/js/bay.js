@@ -16,6 +16,7 @@ $(function () {
                     "data":baylist,
                     "columns":[
                         { title: "Name", data: "bayName" },
+                        {title:"Points",data:"points"}
                        ,
                         {render: function(data, type, full, meta){
                             
@@ -86,10 +87,10 @@ function deleteBay(_bayId){
     }
 }
 
-function navigateEditBay(_companyId,_companyName,_emailAddress,_phone,_creditLimit,_address){
+function navigateEditBay(_bayId,_bayName){
 
-  localStorage.setItem("bayId",_companyId);
-  localStorage.setItem("bayName",_companyName);
+  localStorage.setItem("bayId",_bayId);
+  localStorage.setItem("bayName",_bayName);
    
   window.location.href ="/edit-bay";
               

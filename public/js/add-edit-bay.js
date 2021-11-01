@@ -6,7 +6,7 @@ $(function () {
    
    
       
-       $("#name").val(companyName);
+       $("#name").val(bayName);
      
      }
      
