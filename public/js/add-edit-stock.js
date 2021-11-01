@@ -18,20 +18,16 @@ $(function(){
      $("#productDescription").val(description);
    }
    
-  $("#add-stock-form").submit(function(e) {
-    e.preventDefault();
-})
 
   $.validator.setDefaults({
-    submitHandler: function (e) {
-      var Products = $("#Products").val();
+    submitHandler: function () {
+
+      var ProductsId = $("#Products option:selected").attr("id");
       var StockStatus = $("#stockStatus").val();
       var Quantity = $("#Quantity").val();
-      var startDate=$('#startdate').val();
-      var endDate=$('#enddate').val();
-      
 
-      submitForm(Products,StockStatus,Quantity,startDate,endDate);
+
+      submitForm(ProductsId,StockStatus,Quantity);
      
     }
   });
@@ -47,12 +43,6 @@ $(function(){
       Quantity: {
         required: true,
       },
-      startdate: {
-        required: true,
-      },
-      enddate: {
-        required: true,
-      }
     },
     messages: {
       Products: {
@@ -64,12 +54,6 @@ $(function(){
       Quantity:{
         required:"Please provide quantity"
       },
-      startdate:{
-        required:"Please select date"
-      },
-      enddate:{
-        required:"Please select date"
-      }
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -84,7 +68,7 @@ $(function(){
     }
   });
 
-  function submitForm(_Products,_StockStatus,_Quantity,_startDate,_endDate){
+  function submitForm(_ProductsId,_StockStatus,_Quantity){
         
     $("#submit-btn").css("display","none");
     $("#submit-spinner").css("display","inline");
@@ -98,11 +82,10 @@ $(function(){
                 type: "POST",
                 url:backendUrl+"/inventory",
                 data:{
-                    product:_Products,
+                    productId:_ProductsId,
                     stockStatus:_StockStatus,
-                    quantity:_Quantity,
-                    startDate:_startDate,
-                    endDate:_endDate},
+                    noOfUnits:_Quantity,
+                   },
                 headers:{Authorization:"Bearer "+result},
                 success: function (response) {
                   console.log(response);
@@ -131,8 +114,7 @@ $(function(){
                   product:_Products,
                     stockStatus:_StockStatus,
                     quantity:_Quantity,
-                    startDate:_startDate,
-                    endDate:_endDate},
+                   },
                 headers:{Authorization:"Bearer "+result},
                 success: function (response) {
                     $("#submit-btn").css("display","inline");

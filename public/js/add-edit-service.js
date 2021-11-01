@@ -12,8 +12,7 @@ $(function () {
    }
 
   //product selector on button click
-  $("#add-product").click(function (e) { 
-      e.preventDefault();
+  $("#add-product").click(function () { 
 
      var  element =`<div class="row">
                 <div class="col-8">
@@ -34,9 +33,6 @@ $(function () {
       $("#extra-products").append(element);
   });
 
-  $("#add-service-form").submit(function(e) {
-    e.preventDefault();
-})
 
   $.validator.setDefaults({
     submitHandler: function (e) {
@@ -44,8 +40,9 @@ $(function () {
       var pricePerUnit = $("#pricePerUnit").val();
       var Product = $("#Products").val();
       var openingQuantity = $("#openingQuantity").val();
-      var Products=$(".products").val();
-      var Quantity=$(".quantity").val();
+      // var Products=$(".products").val();
+      // var Quantity=$(".quantity").val();
+      
 
       submitForm(name,pricePerUnit,Product,openingQuantity);
      
@@ -66,12 +63,7 @@ $(function () {
       openingQuantity: {
         required: true,
       },
-      products: {
-        required: true,
-      },
-      quantity: {
-          required:true,
-      }
+
     },
     messages: {
       name: {
@@ -86,12 +78,6 @@ $(function () {
       openingQuantity:{
         required:"Please provide quantity"
       },
-      products:{
-        required:"Please select product"
-      },
-      quantity:{
-          required:"Please select quantity"
-      }
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {

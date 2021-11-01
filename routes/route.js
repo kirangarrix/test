@@ -78,6 +78,26 @@ router.get("/add-advisors",function(req,res){
   res.render('advisor-add-edit',{name:"Advisor",functionality:"Add Advisor",key:"add-advisor"});
 })
 
+//edit advisors
+router.get("/edit-advisors",function(req,res){
+  res.render('advisor-add-edit',{name:"Advisor",functionality:"Add Advisor",key:"edit-advisor"});
+})
+
+//advisors
+router.get('/bay', function(req, res) {
+  res.render('bay',{});
+});
+
+// add bay
+
+router.get("/add-bay",function(req,res){
+  res.render('bay-add-edit',{name:"Bay",functionality:"Add Bay",key:"add-bay"});
+});
+// edit  bay
+router.get("/add-bay",function(req,res){
+  res.render('bay-add-edit',{name:"Bay",functionality:"Add Bay",key:"edit-bay"});
+});
+
 
 
 

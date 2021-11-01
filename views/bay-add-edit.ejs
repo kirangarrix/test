@@ -22,7 +22,7 @@
     //  check user is logged in
     let userId =localStorage.getItem("id");
     if(!userId) window.location.href ="/login";
-    var key  = "<%- key %>"; ///get key to switch edit or delete 
+    var key = "<%- key %>"; ///get key to switch edit or delete 
   </script>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -292,38 +292,16 @@
                 <!-- /.card-header -->
                 
                   <div class="card-body">
-                    <form id="add-stock-form">
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Product</label>
-                            <select class="form-control" style="width: 100%;" id="Products" name="Products">
-                              <option value="" selected disabled>Choose</option>   
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                    <form id="add-company-form" action="#">
                     <div class="row">
-                      <div class="col-6">
+                      <div class="col-4">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Stock Status(IN / OUT)</label>
-                          <select class="form-control" style="width: 100%;" id="stockStatus" name="stockStatus">
-                            <option value="" selected disabled>Choose</option>   
-                            <option value="IN">IN</option>
-                            <option value="OUT">OUT</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Quantity</label>
-                          <input type="number" name="Quantity" class="form-control" id="Quantity" placeholder="Enter quantity">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input type="text" name="name" class="form-control" id="name" placeholder="Enter company name">
                         </div>
                       </div>
                     </div>
-                    
-                    
-                    
+                   
                     <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
                     <div class="btn btn-primary hide-element" id="submit-spinner" >
                       <div class="spinner-border spinner-border-sm text-light ml-3 mr-3" 
@@ -374,25 +352,6 @@
 <!-- jquery-validation -->
 <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<!-- InputMask -->
-<script src="../../plugins/moment/moment.min.js"></script>
-<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
-<!-- date-range-picker -->
-<!-- <script src="../../plugins/daterangepicker/daterangepicker.js"></script> -->
-<!-- bootstrap color picker -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Bootstrap Switch -->
-<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<!-- BS-Stepper -->
-<!-- <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script> -->
-<!-- dropzonejs -->
-<!-- <script src="../../plugins/dropzone/min/dropzone.min.js"></script> -->
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -405,8 +364,7 @@
 <script src="/js/index.js"></script>
 <script src="/js/config.js"></script>
 <script src="/js/get-acesstoken.js"></script>
-<script src="/js/product_id.js"></script>
-<script src="/js/add-edit-stock.js"></script>
+<script src="/js/add-edit-bay.js"></script>
 
 </body>
 </html>
