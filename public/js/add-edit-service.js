@@ -14,16 +14,36 @@ $(function () {
   //product selector on button click
   $("#add-product").click(function () { 
 
+    //get access token
+    getAccessToken().then((result) => {
+      // get product
+      $.ajax({
+        type: "GET",
+        url: backendUrl+"/product",
+        headers: { Authorization: "Bearer " + result },
+        success: function (response) {
+            // console.log(response);
+          let products = response.data.products;
+          for (var i = 0; i < products.length; i++) {
+            $(".products").append(
+              $(`<option id=${products[i]._id} quantity=${products[i].openingQuantity}>${products[i].name}</option>`)
+            );
+          }
+        },
+      });
+    });
+    
+
      var  element =`<div class="row">
-                <div class="col-8">
+                <div class="col-6">
                     <div class="form-group">
                     <label for="exampleInputPassword1">Product</label>
-                    <select class="form-control products" style="width: 100%;" name="products"  id="#Products">
+                    <select class="form-control products" style="width: 100%;" name="products"  id="Products">
                     <option value="" selected disabled>Choose</option>   
                     </select>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Quantity</label>
                     <input type="number" name="quantity" class="form-control quantity"  id="quantity" placeholder="Enter Quantity">
@@ -40,8 +60,9 @@ $(function () {
       var pricePerUnit = $("#pricePerUnit").val();
       var Product = $("#Products").val();
       var openingQuantity = $("#openingQuantity").val();
-      // var Products=$(".products").val();
-      // var Quantity=$(".quantity").val();
+      //  var Products=$(".products").val();
+      //  var Quantity=$(".quantity").val();
+      
       
 
       submitForm(name,pricePerUnit,Product,openingQuantity);

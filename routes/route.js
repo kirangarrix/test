@@ -95,7 +95,7 @@ router.get("/add-bay",function(req,res){
 });
 // edit  bay
 router.get("/edit-bay",function(req,res){
-  res.render('bay-add-edit',{name:"Bay",functionality:"Add Bay",key:"edit-bay"});
+  res.render('bay-add-edit',{name:"Bay",functionality:"Edit Bay",key:"edit-bay"});
 });
 
 
